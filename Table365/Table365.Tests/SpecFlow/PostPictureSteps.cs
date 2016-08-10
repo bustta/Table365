@@ -1,26 +1,34 @@
-﻿using TechTalk.SpecFlow;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TechTalk.SpecFlow;
+using Table365.Core.Repository;
+using Table365.Tests.Core.Repository;
 
 namespace Table365.Tests.SpecFlow
 {
     [Binding]
     public class PostPictureSteps
     {
+        IPhotoRepository _photoRepository = new StubPhotoRepository();
+        private byte[] _photo;
+        private int _originalPhotoCount;
         [Given(@"I have received a photo from client side")]
         public void GivenIHaveReceivedAPhotoFromClientSide()
         {
-            ScenarioContext.Current.Pending();
+            _photo = new byte[256];
         }
 
         [When(@"save into DB")]
         public void WhenSaveIntoDb()
         {
-            ScenarioContext.Current.Pending();
+            _originalPhotoCount = _photoRepository.GetUserPhotoCount();
+            _photoRepository.Insert(_photo);
         }
 
         [Then(@"the count of table Photo should be plus one")]
         public void ThenTheCountOfTablePhotoShouldBePlusOne()
         {
-            ScenarioContext.Current.Pending();
+            var currentPhoto = _photoRepository.GetUserPhotoCount();
+            Assert.AreEqual(currentPhoto, _originalPhotoCount + 1);
         }
     }
 }
