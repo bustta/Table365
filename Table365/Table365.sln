@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Table365", "Table365\Table3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Table365.Tests", "Table365.Tests\Table365.Tests.csproj", "{88F6186D-C607-4C65-B47C-4D253919FAA1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Table365.Core", "Table365.Core\Table365.Core.csproj", "{CA6CB999-C0B0-409E-8A15-546E1D26F57B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{88F6186D-C607-4C65-B47C-4D253919FAA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F6186D-C607-4C65-B47C-4D253919FAA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F6186D-C607-4C65-B47C-4D253919FAA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA6CB999-C0B0-409E-8A15-546E1D26F57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA6CB999-C0B0-409E-8A15-546E1D26F57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA6CB999-C0B0-409E-8A15-546E1D26F57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA6CB999-C0B0-409E-8A15-546E1D26F57B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
