@@ -1,8 +1,8 @@
 ﻿namespace Table365.Core.Repository
 {
-    public interface IPhotoRepository
+    public interface ITablePhotoRepository
     {
         void Insert(byte[] photo);
-        int GetUserPhotoCount();
+        int GetTablePhotoCount();
     }
 }

@@ -95,25 +95,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Repository\StubPhotoRepository.cs" />
+    <Compile Include="Core\Repository\StubTablePhotoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
-    <Compile Include="SpecFlow\PostPicture.feature.cs">
+    <Compile Include="SpecFlow\PostTablePhoto.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>PostPicture.feature</DependentUpon>
+      <DependentUpon>PostTablePhoto.feature</DependentUpon>
     </Compile>
-    <Compile Include="SpecFlow\PostPictureSteps.cs" />
+    <Compile Include="SpecFlow\PostTablePhotoSteps.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="SpecFlow\PostPicture.feature">
+    <None Include="SpecFlow\PostTablePhoto.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>PostPicture.feature.cs</LastGenOutput>
+      <LastGenOutput>PostTablePhoto.feature.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
