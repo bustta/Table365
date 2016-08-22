@@ -251,3 +251,7 @@ paket-files/
 .idea/
 *.sln.iml
 /Table365/Table365.Core/App.config
+
+
+Web.Debug.config
+Web.Release.config

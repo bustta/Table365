@@ -12,7 +12,7 @@ namespace Table365
     {
         public void Configuration(IAppBuilder app)
         {
-            ConfigureAuth(app);
+            
         }
     }
 }
