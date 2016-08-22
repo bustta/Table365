@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Table365.Models.POCO
 {
@@ -51,6 +49,5 @@ namespace Table365.Models.POCO
         public byte[] ProfilePhoto { get; set; }
 
         public ICollection<TablePhoto> TablePhotos { get; set; }
-
     }
 }

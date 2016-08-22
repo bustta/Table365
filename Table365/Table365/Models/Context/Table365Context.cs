@@ -13,7 +13,7 @@ namespace Table365.Models.Context
         public DbSet<TablePhoto> TablePhotos { get; set; }
 
         public Table365Context()
-            :base("name=DefaultConnection")
+            :base("name=Table365Db")
         {
             
         }
