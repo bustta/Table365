@@ -481,22 +481,27 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:Table365.Controllers.TablePhotosController">
+            <summary>
+                TablePhoto API
+            </summary>
+        </member>
         <member name="M:Table365.Controllers.TablePhotosController.GetTablePhotos">
             <summary>
-            Get all table photos.
+                Get all table photos.
             </summary>
             <returns>IQueryable&lt;TablePhoto&gt;.</returns>
         </member>
         <member name="M:Table365.Controllers.TablePhotosController.GetTablePhoto(System.Guid)">
             <summary>
-            Get table photo by id.
+                Get table photo by id.
             </summary>
             <param name="id">The photo id.</param>
             <returns>IHttpActionResult.</returns>
         </member>
         <member name="M:Table365.Controllers.TablePhotosController.PutTablePhoto(System.Guid,Table365.Models.POCO.TablePhoto)">
             <summary>
-            Update table photo.
+                Update table photo.
             </summary>
             <param name="id">The photo id.</param>
             <param name="tablePhoto">The photo.</param>
@@ -504,17 +509,57 @@
         </member>
         <member name="M:Table365.Controllers.TablePhotosController.PostTablePhoto(Table365.Models.POCO.TablePhoto)">
             <summary>
-            Post a new photo.
+                Post a new photo.
             </summary>
             <param name="tablePhoto">The photo.</param>
             <returns>IHttpActionResult</returns>
         </member>
         <member name="M:Table365.Controllers.TablePhotosController.DeleteTablePhoto(System.Guid)">
             <summary>
-            Delete the photo by id.
+                Delete the photo by id.
             </summary>
             <param name="id">The photo id.</param>
             <returns>IHttpActionResult</returns>
+        </member>
+        <member name="T:Table365.Controllers.UsersController">
+            <summary>
+                User API
+            </summary>
+        </member>
+        <member name="M:Table365.Controllers.UsersController.GetUsers">
+            <summary>
+                Get all users.
+            </summary>
+            <returns>IQueryable&lt;User&gt;.</returns>
+        </member>
+        <member name="M:Table365.Controllers.UsersController.GetUser(System.Guid)">
+            <summary>
+                Get user by id.
+            </summary>
+            <param name="id">The user id.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:Table365.Controllers.UsersController.PutUser(System.Guid,Table365.Models.POCO.User)">
+            <summary>
+                Update user.
+            </summary>
+            <param name="id">The user id.</param>
+            <param name="user">The user.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:Table365.Controllers.UsersController.PostUser(Table365.Models.POCO.User)">
+            <summary>
+                Create a new user.
+            </summary>
+            <param name="user">The user.</param>
+            <returns>IHttpActionResult.</returns>
+        </member>
+        <member name="M:Table365.Controllers.UsersController.DeleteUser(System.Guid)">
+            <summary>
+                Delete the user by id.
+            </summary>
+            <param name="id">The user id.</param>
+            <returns>IHttpActionResult.</returns>
         </member>
     </members>
 </doc>

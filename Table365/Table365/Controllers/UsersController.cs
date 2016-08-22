@@ -11,60 +11,60 @@ using Table365.Models.POCO;
 namespace Table365.Controllers
 {
     /// <summary>
-    ///     TablePhoto API
+    ///     User API
     /// </summary>
-    public class TablePhotosController : ApiController
+    public class UsersController : ApiController
     {
         private readonly Table365Context db = new Table365Context();
 
+
         /// <summary>
-        ///     Get all table photos.
+        ///     Get all users.
         /// </summary>
-        /// <returns>IQueryable&lt;TablePhoto&gt;.</returns>
-        public IQueryable<TablePhoto> GetTablePhotos()
+        /// <returns>IQueryable&lt;User&gt;.</returns>
+        public IQueryable<User> GetUsers()
         {
-            return db.TablePhotos;
+            return db.Users;
         }
 
-
         /// <summary>
-        ///     Get table photo by id.
+        ///     Get user by id.
         /// </summary>
-        /// <param name="id">The photo id.</param>
+        /// <param name="id">The user id.</param>
         /// <returns>IHttpActionResult.</returns>
-        [ResponseType(typeof(TablePhoto))]
-        public IHttpActionResult GetTablePhoto(Guid id)
+        [ResponseType(typeof(User))]
+        public IHttpActionResult GetUser(Guid id)
         {
-            var tablePhoto = db.TablePhotos.Find(id);
-            if (tablePhoto == null)
+            var user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(tablePhoto);
+            return Ok(user);
         }
 
 
         /// <summary>
-        ///     Update table photo.
+        ///     Update user.
         /// </summary>
-        /// <param name="id">The photo id.</param>
-        /// <param name="tablePhoto">The photo.</param>
-        /// <returns>IHttpActionResult</returns>
+        /// <param name="id">The user id.</param>
+        /// <param name="user">The user.</param>
+        /// <returns>IHttpActionResult.</returns>
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutTablePhoto(Guid id, TablePhoto tablePhoto)
+        public IHttpActionResult PutUser(Guid id, User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tablePhoto.Id)
+            if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(tablePhoto).State = EntityState.Modified;
+            db.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -72,7 +72,7 @@ namespace Table365.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TablePhotoExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -84,19 +84,19 @@ namespace Table365.Controllers
 
 
         /// <summary>
-        ///     Post a new photo.
+        ///     Create a new user.
         /// </summary>
-        /// <param name="tablePhoto">The photo.</param>
-        /// <returns>IHttpActionResult</returns>
-        [ResponseType(typeof(TablePhoto))]
-        public IHttpActionResult PostTablePhoto(TablePhoto tablePhoto)
+        /// <param name="user">The user.</param>
+        /// <returns>IHttpActionResult.</returns>
+        [ResponseType(typeof(User))]
+        public IHttpActionResult PostUser(User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.TablePhotos.Add(tablePhoto);
+            db.Users.Add(user);
 
             try
             {
@@ -104,35 +104,35 @@ namespace Table365.Controllers
             }
             catch (DbUpdateException)
             {
-                if (TablePhotoExists(tablePhoto.Id))
+                if (UserExists(user.Id))
                 {
                     return Conflict();
                 }
                 throw;
             }
 
-            return CreatedAtRoute("DefaultApi", new {id = tablePhoto.Id}, tablePhoto);
+            return CreatedAtRoute("DefaultApi", new {id = user.Id}, user);
         }
 
 
         /// <summary>
-        ///     Delete the photo by id.
+        ///     Delete the user by id.
         /// </summary>
-        /// <param name="id">The photo id.</param>
-        /// <returns>IHttpActionResult</returns>
-        [ResponseType(typeof(TablePhoto))]
-        public IHttpActionResult DeleteTablePhoto(Guid id)
+        /// <param name="id">The user id.</param>
+        /// <returns>IHttpActionResult.</returns>
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(Guid id)
         {
-            var tablePhoto = db.TablePhotos.Find(id);
-            if (tablePhoto == null)
+            var user = db.Users.Find(id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            db.TablePhotos.Remove(tablePhoto);
+            db.Users.Remove(user);
             db.SaveChanges();
 
-            return Ok(tablePhoto);
+            return Ok(user);
         }
 
         protected override void Dispose(bool disposing)
@@ -144,9 +144,9 @@ namespace Table365.Controllers
             base.Dispose(disposing);
         }
 
-        private bool TablePhotoExists(Guid id)
+        private bool UserExists(Guid id)
         {
-            return db.TablePhotos.Count(e => e.Id == id) > 0;
+            return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
