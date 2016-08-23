@@ -1,4 +1,5 @@
 ﻿using Table365.Core.Repository;
+using Table365.Core.Repository.Interface;
 
 namespace Table365.Tests.Core.Repository
 {

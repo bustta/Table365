@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Table365.Core.Repository;
+using Table365.Core.Repository.Interface;
 using Table365.Tests.Core.Repository;
 using TechTalk.SpecFlow;
 

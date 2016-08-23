@@ -1,4 +1,4 @@
-﻿namespace Table365.Core.Repository
+﻿namespace Table365.Core.Repository.Interface
 {
     public interface ITablePhotoRepository
     {
