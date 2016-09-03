@@ -1,8 +1,9 @@
-﻿namespace Table365.Core.Repository.Interface
+﻿using Table365.Models.POCO;
+
+namespace Table365.Core.Repository.Interface
 {
-    public interface ITablePhotoRepository
+    public interface ITablePhotoRepository : IRepository<TablePhoto>
     {
-        void Insert(byte[] photo);
         int GetTablePhotoCount();
     }
 }
