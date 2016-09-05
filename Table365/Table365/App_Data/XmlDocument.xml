@@ -499,7 +499,7 @@
             <param name="id">The photo id.</param>
             <returns>IHttpActionResult.</returns>
         </member>
-        <member name="M:Table365.Controllers.TablePhotosController.PutTablePhoto(System.Guid,Table365.Models.POCO.TablePhoto)">
+        <member name="M:Table365.Controllers.TablePhotosController.PutTablePhoto(System.Guid,Table365.Core.Models.POCO.TablePhoto)">
             <summary>
                 Update table photo.
             </summary>
@@ -507,7 +507,7 @@
             <param name="tablePhoto">The photo.</param>
             <returns>IHttpActionResult</returns>
         </member>
-        <member name="M:Table365.Controllers.TablePhotosController.PostTablePhoto(Table365.Models.POCO.TablePhoto)">
+        <member name="M:Table365.Controllers.TablePhotosController.PostTablePhoto(Table365.Core.Models.POCO.TablePhoto)">
             <summary>
                 Post a new photo.
             </summary>
@@ -539,7 +539,7 @@
             <param name="id">The user id.</param>
             <returns>IHttpActionResult.</returns>
         </member>
-        <member name="M:Table365.Controllers.UsersController.PutUser(System.Guid,Table365.Models.POCO.User)">
+        <member name="M:Table365.Controllers.UsersController.PutUser(System.Guid,Table365.Core.Models.POCO.User)">
             <summary>
                 Update user.
             </summary>
@@ -547,7 +547,7 @@
             <param name="user">The user.</param>
             <returns>IHttpActionResult.</returns>
         </member>
-        <member name="M:Table365.Controllers.UsersController.PostUser(Table365.Models.POCO.User)">
+        <member name="M:Table365.Controllers.UsersController.PostUser(Table365.Core.Models.POCO.User)">
             <summary>
                 Create a new user.
             </summary>

@@ -1,18 +1,16 @@
+using System.Data.Entity.Migrations;
+using Table365.Core.Models.Context;
+
 namespace Table365.Migrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<Table365.Models.Context.Table365Context>
+    internal sealed class Configuration : DbMigrationsConfiguration<Table365Context>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Table365.Models.Context.Table365Context context)
+        protected override void Seed(Table365Context context)
         {
             //  This method will be called after migrating to the latest version.
 

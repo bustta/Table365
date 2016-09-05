@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Table365.Models.Context;
-using Table365.Models.POCO;
+using Table365.Core.Models.POCO;
+using Table365.Core.Repository;
 
 namespace Table365.Controllers
 {
@@ -15,7 +14,7 @@ namespace Table365.Controllers
     /// </summary>
     public class TablePhotosController : ApiController
     {
-        private readonly Table365Context db = new Table365Context();
+        private readonly TablePhotoRepository _tablePhotoRepo = new TablePhotoRepository();
 
         /// <summary>
         ///     Get all table photos.
@@ -23,7 +22,8 @@ namespace Table365.Controllers
         /// <returns>IQueryable&lt;TablePhoto&gt;.</returns>
         public IQueryable<TablePhoto> GetTablePhotos()
         {
-            return db.TablePhotos;
+            //return db.TablePhotos;
+            return _tablePhotoRepo.GetAll();
         }
 
 
@@ -35,7 +35,8 @@ namespace Table365.Controllers
         [ResponseType(typeof(TablePhoto))]
         public IHttpActionResult GetTablePhoto(Guid id)
         {
-            var tablePhoto = db.TablePhotos.Find(id);
+            //var tablePhoto = db.TablePhotos.Find(id);
+            var tablePhoto = _tablePhotoRepo.Get(x => x.Id == id);
             if (tablePhoto == null)
             {
                 return NotFound();
@@ -64,11 +65,12 @@ namespace Table365.Controllers
                 return BadRequest();
             }
 
-            db.Entry(tablePhoto).State = EntityState.Modified;
+            //db.Entry(tablePhoto).State = EntityState.Modified;
 
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _tablePhotoRepo.Update(tablePhoto);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -96,11 +98,12 @@ namespace Table365.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.TablePhotos.Add(tablePhoto);
+            //db.TablePhotos.Add(tablePhoto);
 
             try
             {
-                db.SaveChanges();
+                //db.SaveChanges();
+                _tablePhotoRepo.Create(tablePhoto);
             }
             catch (DbUpdateException)
             {
@@ -123,14 +126,15 @@ namespace Table365.Controllers
         [ResponseType(typeof(TablePhoto))]
         public IHttpActionResult DeleteTablePhoto(Guid id)
         {
-            var tablePhoto = db.TablePhotos.Find(id);
+            //var tablePhoto = db.TablePhotos.Find(id);
+            var tablePhoto = _tablePhotoRepo.Get(x => x.Id == id);
             if (tablePhoto == null)
             {
                 return NotFound();
             }
-
-            db.TablePhotos.Remove(tablePhoto);
-            db.SaveChanges();
+            _tablePhotoRepo.Delete(tablePhoto);
+            //db.TablePhotos.Remove(tablePhoto);
+            //db.SaveChanges();
 
             return Ok(tablePhoto);
         }
@@ -139,14 +143,16 @@ namespace Table365.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                //db.Dispose();
+                _tablePhotoRepo.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool TablePhotoExists(Guid id)
         {
-            return db.TablePhotos.Count(e => e.Id == id) > 0;
+            //return db.TablePhotos.Count(e => e.Id == id) > 0;
+            return _tablePhotoRepo.Get(x => x.Id == id) != null;
         }
     }
 }

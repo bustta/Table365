@@ -1,6 +1,6 @@
 ﻿using System;
+using Table365.Core.Models.POCO;
 using Table365.Core.Repository.Interface;
-using Table365.Models.POCO;
 
 namespace Table365.Core.Repository
 {

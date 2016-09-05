@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
-using Table365.Models.POCO;
+﻿using System.Data.Entity;
+using Table365.Core.Models.POCO;
 
-namespace Table365.Models.Context
+namespace Table365.Core.Models.Context
 {
     public class Table365Context : DbContext
     {

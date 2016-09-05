@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Table365.Models.POCO
+namespace Table365.Core.Models.POCO
 {
     public class TablePhoto
     {

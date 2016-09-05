@@ -255,3 +255,5 @@ paket-files/
 Table365/Table365/Web.config
 Web.Debug.config
 Web.Release.config
+/Table365/Table365.Core/App.Debug.config
+/Table365/Table365.Core/App.Release.config

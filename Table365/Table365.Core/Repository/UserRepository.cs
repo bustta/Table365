@@ -1,4 +1,4 @@
-﻿using Table365.Models.POCO;
+﻿using Table365.Core.Models.POCO;
 
 namespace Table365.Core.Repository
 {

@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Table365.Models.Context;
-using Table365.Models.POCO;
+using Table365.Core.Models.POCO;
+using Table365.Core.Repository;
 
 namespace Table365.Controllers
 {
@@ -15,8 +14,7 @@ namespace Table365.Controllers
     /// </summary>
     public class UsersController : ApiController
     {
-        private readonly Table365Context db = new Table365Context();
-
+        private readonly UserRepository _userRepo = new UserRepository();
 
         /// <summary>
         ///     Get all users.
@@ -24,7 +22,8 @@ namespace Table365.Controllers
         /// <returns>IQueryable&lt;User&gt;.</returns>
         public IQueryable<User> GetUsers()
         {
-            return db.Users;
+            return _userRepo.GetAll();
+            //return db.Users;
         }
 
         /// <summary>
@@ -35,7 +34,8 @@ namespace Table365.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(Guid id)
         {
-            var user = db.Users.Find(id);
+            var user = _userRepo.Get(x => x.Id == id);
+            //var user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
@@ -64,11 +64,9 @@ namespace Table365.Controllers
                 return BadRequest();
             }
 
-            db.Entry(user).State = EntityState.Modified;
-
             try
             {
-                db.SaveChanges();
+                _userRepo.Update(user);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -78,6 +76,22 @@ namespace Table365.Controllers
                 }
                 throw;
             }
+
+
+            //db.Entry(user).State = EntityState.Modified;
+
+            //try
+            //{
+            //    db.SaveChanges();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!UserExists(id))
+            //    {
+            //        return NotFound();
+            //    }
+            //    throw;
+            //}
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -96,11 +110,13 @@ namespace Table365.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+
+            //db.Users.Add(user);
 
             try
             {
-                db.SaveChanges();
+                _userRepo.Create(user);
+                //db.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -123,14 +139,18 @@ namespace Table365.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(Guid id)
         {
-            var user = db.Users.Find(id);
+            var user = _userRepo.Get(x => x.Id == id);
+
+
+            //var user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
+            _userRepo.Delete(user);
 
-            db.Users.Remove(user);
-            db.SaveChanges();
+            //db.Users.Remove(user);
+            //db.SaveChanges();
 
             return Ok(user);
         }
@@ -139,14 +159,16 @@ namespace Table365.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _userRepo.Dispose();
+                //db.Dispose();
             }
             base.Dispose(disposing);
         }
 
         private bool UserExists(Guid id)
         {
-            return db.Users.Count(e => e.Id == id) > 0;
+            return _userRepo.Get(x => x.Id == id) != null;
+            //return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }

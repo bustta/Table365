@@ -2,21 +2,19 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using Table365.Core.Models.Context;
 using Table365.Core.Repository.Interface;
-using Table365.Models.Context;
 
 namespace Table365.Core.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity>
         where TEntity : class
     {
-        private DbContext _context { get; set; }
-
-        public GenericRepository() 
+        public GenericRepository()
             : this(new Table365Context())
         {
-            
         }
+
         public GenericRepository(DbContext context)
         {
             if (context == null)
@@ -25,6 +23,8 @@ namespace Table365.Core.Repository
             }
             _context = context;
         }
+
+        private DbContext _context { get; set; }
 
         public void Dispose()
         {
