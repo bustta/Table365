@@ -7,9 +7,13 @@ namespace Table365.Core.Models.POCO
 {
     public class User
     {
+        public User()
+        {
+            Id = Guid.NewGuid();
+        }
+
         [DisplayName("ID")]
         [Key]
-        [Required]
         public Guid Id { get; set; }
 
         [DisplayName("Account")]
@@ -38,11 +42,9 @@ namespace Table365.Core.Models.POCO
         public string Email { get; set; }
 
         [DisplayName("RegisterTime")]
-        [Required]
         public DateTime RegisterTime { get; set; }
 
         [DisplayName("LoginTime")]
-        [Required]
         public DateTime LoginTime { get; set; }
 
         [DisplayName("ProfilePhoto")]

@@ -23,7 +23,6 @@ namespace Table365.Controllers
         public IQueryable<User> GetUsers()
         {
             return _userRepo.GetAll();
-            //return db.Users;
         }
 
         /// <summary>
@@ -35,7 +34,6 @@ namespace Table365.Controllers
         public IHttpActionResult GetUser(Guid id)
         {
             var user = _userRepo.Get(x => x.Id == id);
-            //var user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
@@ -78,21 +76,6 @@ namespace Table365.Controllers
             }
 
 
-            //db.Entry(user).State = EntityState.Modified;
-
-            //try
-            //{
-            //    db.SaveChanges();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!UserExists(id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    throw;
-            //}
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -105,18 +88,16 @@ namespace Table365.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
+            user.RegisterTime = DateTime.Now;
+            user.LoginTime = DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-
-            //db.Users.Add(user);
-
             try
             {
                 _userRepo.Create(user);
-                //db.SaveChanges();
             }
             catch (DbUpdateException)
             {
@@ -141,16 +122,11 @@ namespace Table365.Controllers
         {
             var user = _userRepo.Get(x => x.Id == id);
 
-
-            //var user = db.Users.Find(id);
             if (user == null)
             {
                 return NotFound();
             }
             _userRepo.Delete(user);
-
-            //db.Users.Remove(user);
-            //db.SaveChanges();
 
             return Ok(user);
         }
@@ -160,7 +136,6 @@ namespace Table365.Controllers
             if (disposing)
             {
                 _userRepo.Dispose();
-                //db.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -168,7 +143,6 @@ namespace Table365.Controllers
         private bool UserExists(Guid id)
         {
             return _userRepo.Get(x => x.Id == id) != null;
-            //return db.Users.Count(e => e.Id == id) > 0;
         }
     }
 }
