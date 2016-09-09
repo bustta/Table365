@@ -2,9 +2,11 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Table365.Core.Models.POCO;
+using Table365.Core.Models.Validation;
 using Table365.Core.Repository;
 
 namespace Table365.Controllers
@@ -86,35 +88,34 @@ namespace Table365.Controllers
 
 
         /// <summary>
-        ///     Post a new photo.
+        ///     Post a new photo. Post with form-data.
         /// </summary>
-        /// <param name="tablePhoto">The photo.</param>
         /// <returns>IHttpActionResult</returns>
+        //[ResponseType(typeof(TablePhoto))]
         [ResponseType(typeof(TablePhoto))]
-        public IHttpActionResult PostTablePhoto(TablePhoto tablePhoto)
+        public IHttpActionResult PostTablePhoto()
         {
-            if (!ModelState.IsValid)
+            var request = HttpContext.Current.Request;
+            var userRepo = new UserRepository();
+            var userId = request.Form["User"];
+            var user = userRepo.Get(x => x.Id.ToString() == userId);
+            var tablePhoto = new TablePhoto
             {
-                return BadRequest(ModelState);
-            }
+                User = user,
+                PostTime = DateTime.Now,
+                Description = request.Form["Description"],
+                Location = request.Form["Location"],
+            };
+            FormDataEntityValidation.ValidateEntity(tablePhoto);
 
-            //db.TablePhotos.Add(tablePhoto);
-
-            try
+            if (request.Files.Count > 0)
             {
-                //db.SaveChanges();
-                _tablePhotoRepo.Create(tablePhoto);
+                var imgBytes = new byte[request.Files[0].ContentLength];
+                request.Files[0].InputStream.Read(imgBytes, 0, request.Files[0].ContentLength);
             }
-            catch (DbUpdateException)
-            {
-                if (TablePhotoExists(tablePhoto.Id))
-                {
-                    return Conflict();
-                }
-                throw;
-            }
+            _tablePhotoRepo.Create(tablePhoto);
 
-            return CreatedAtRoute("DefaultApi", new {id = tablePhoto.Id}, tablePhoto);
+            return CreatedAtRoute("DefaultApi", new { id = tablePhoto.Id }, tablePhoto);
         }
 
 

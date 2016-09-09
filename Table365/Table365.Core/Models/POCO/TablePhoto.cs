@@ -1,14 +1,18 @@
 ﻿using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace Table365.Core.Models.POCO
 {
     public class TablePhoto
     {
+        public TablePhoto()
+        {
+            Id = Guid.NewGuid();
+        }
         [DisplayName("ID")]
         [Key]
-        [Required]
         public Guid Id { get; set; }
 
         [DisplayName("User")]

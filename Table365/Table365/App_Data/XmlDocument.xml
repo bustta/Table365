@@ -507,11 +507,10 @@
             <param name="tablePhoto">The photo.</param>
             <returns>IHttpActionResult</returns>
         </member>
-        <member name="M:Table365.Controllers.TablePhotosController.PostTablePhoto(Table365.Core.Models.POCO.TablePhoto)">
+        <member name="M:Table365.Controllers.TablePhotosController.PostTablePhoto">
             <summary>
-                Post a new photo.
+                Post a new photo. Post with form-data.
             </summary>
-            <param name="tablePhoto">The photo.</param>
             <returns>IHttpActionResult</returns>
         </member>
         <member name="M:Table365.Controllers.TablePhotosController.DeleteTablePhoto(System.Guid)">
@@ -547,11 +546,10 @@
             <param name="user">The user.</param>
             <returns>IHttpActionResult.</returns>
         </member>
-        <member name="M:Table365.Controllers.UsersController.PostUser(Table365.Core.Models.POCO.User)">
+        <member name="M:Table365.Controllers.UsersController.PostUser">
             <summary>
-                Create a new user.
+                Create a new user. Post with form-data, including the user info and a profile picture.
             </summary>
-            <param name="user">The user.</param>
             <returns>IHttpActionResult.</returns>
         </member>
         <member name="M:Table365.Controllers.UsersController.DeleteUser(System.Guid)">

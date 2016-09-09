@@ -2,9 +2,11 @@
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Table365.Core.Models.POCO;
+using Table365.Core.Models.Validation;
 using Table365.Core.Repository;
 
 namespace Table365.Controllers
@@ -81,18 +83,34 @@ namespace Table365.Controllers
 
 
         /// <summary>
-        ///     Create a new user.
+        ///     Create a new user. Post with form-data, including the user info and a profile picture.
         /// </summary>
-        /// <param name="user">The user.</param>
         /// <returns>IHttpActionResult.</returns>
         [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        public IHttpActionResult PostUser()
         {
-            user.RegisterTime = DateTime.Now;
-            user.LoginTime = DateTime.Now;
-            if (!ModelState.IsValid)
+            var request = HttpContext.Current.Request;
+
+            var user = new User();
+            try
             {
-                return BadRequest(ModelState);
+                user.RegisterTime = DateTime.Now;
+                user.LoginTime = DateTime.Now;
+                user.Account = request.Form["Account"];
+                user.Email = request.Form["Email"];
+                user.Name = request.Form["Name"];
+                user.Password = request.Form["Password"]; //encrypt later
+                if (request.Files.Count > 0)
+                {
+                    var imgBytes = new byte[request.Files[0].ContentLength];
+                    request.Files[0].InputStream.Read(imgBytes, 0, request.Files[0].ContentLength);
+                    user.ProfilePhoto = imgBytes;
+                }
+                FormDataEntityValidation.ValidateEntity(user);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
 
             try
