@@ -1,8 +1,8 @@
 ﻿using System;
 using Table365.Core.Models.POCO;
-using Table365.Core.Repository.Interface;
+using Table365.Core.Models.Repository.Interface;
 
-namespace Table365.Core.Repository
+namespace Table365.Core.Models.Repository
 {
     public class TablePhotoRepository : GenericRepository<TablePhoto>, ITablePhotoRepository
     {

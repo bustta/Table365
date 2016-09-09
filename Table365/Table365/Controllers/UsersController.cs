@@ -6,8 +6,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using Table365.Core.Models.POCO;
+using Table365.Core.Models.Repository;
 using Table365.Core.Models.Validation;
-using Table365.Core.Repository;
 
 namespace Table365.Controllers
 {

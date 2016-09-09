@@ -1,6 +1,6 @@
 ﻿using Table365.Core.Models.POCO;
 
-namespace Table365.Core.Repository.Interface
+namespace Table365.Core.Models.Repository.Interface
 {
     public interface IUser : IRepository<User>
     {

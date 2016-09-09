@@ -3,9 +3,9 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Table365.Core.Models.Context;
-using Table365.Core.Repository.Interface;
+using Table365.Core.Models.Repository.Interface;
 
-namespace Table365.Core.Repository
+namespace Table365.Core.Models.Repository
 {
     public class GenericRepository<TEntity> : IRepository<TEntity>
         where TEntity : class

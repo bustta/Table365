@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 using Table365.Core.Models.POCO;
-using Table365.Core.Repository.Interface;
+using Table365.Core.Models.Repository.Interface;
 
 namespace Table365.Tests.Core.Repository
 {

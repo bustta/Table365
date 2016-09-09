@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Table365.Core.Repository.Interface
+namespace Table365.Core.Models.Repository.Interface
 {
     public interface IRepository<TEntity> : IDisposable
         where TEntity : class 
