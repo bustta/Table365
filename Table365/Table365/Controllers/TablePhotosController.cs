@@ -106,13 +106,14 @@ namespace Table365.Controllers
                 Description = request.Form["Description"],
                 Location = request.Form["Location"],
             };
-            FormDataEntityValidation.ValidateEntity(tablePhoto);
-
             if (request.Files.Count > 0)
             {
                 var imgBytes = new byte[request.Files[0].ContentLength];
                 request.Files[0].InputStream.Read(imgBytes, 0, request.Files[0].ContentLength);
+                tablePhoto.Photo = imgBytes;
             }
+            FormDataEntityValidation.ValidateEntity(tablePhoto);
+            
             _tablePhotoRepo.Create(tablePhoto);
 
             return CreatedAtRoute("DefaultApi", new { id = tablePhoto.Id }, tablePhoto);

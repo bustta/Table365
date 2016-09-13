@@ -10,5 +10,16 @@ namespace Table365.Core.Models.Repository
         {
             throw new NotImplementedException();
         }
+
+        public void Create(TablePhoto tablePhoto)
+        {
+            if (tablePhoto == null)
+            {
+                throw new ArgumentNullException("TablePhoto");
+            }
+            Context.Set<User>().Attach(tablePhoto.User);
+            Context.Set<TablePhoto>().Add(tablePhoto);
+            SaveChanges();
+        }
     }
 }

@@ -21,10 +21,10 @@ namespace Table365.Core.Models.Repository
             {
                 throw new ArgumentNullException("context");
             }
-            _context = context;
+            Context = context;
         }
 
-        private DbContext _context { get; set; }
+        protected DbContext Context { get; set; }
 
         public void Dispose()
         {
@@ -39,7 +39,7 @@ namespace Table365.Core.Models.Repository
                 throw new ArgumentNullException("instance");
             }
 
-            _context.Set<TEntity>().Add(instance);
+            Context.Set<TEntity>().Add(instance);
             SaveChanges();
         }
 
@@ -49,7 +49,7 @@ namespace Table365.Core.Models.Repository
             {
                 throw new ArgumentNullException("instance");
             }
-            _context.Entry(instance).State = EntityState.Modified;
+            Context.Entry(instance).State = EntityState.Modified;
             SaveChanges();
         }
 
@@ -59,31 +59,31 @@ namespace Table365.Core.Models.Repository
             {
                 throw new ArgumentNullException("instance");
             }
-            _context.Entry(instance).State = EntityState.Deleted;
+            Context.Entry(instance).State = EntityState.Deleted;
             SaveChanges();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
-            return _context.Set<TEntity>().FirstOrDefault(predicate);
+            return Context.Set<TEntity>().FirstOrDefault(predicate);
         }
 
         public IQueryable<TEntity> GetAll()
         {
-            return _context.Set<TEntity>().AsQueryable();
+            return Context.Set<TEntity>().AsQueryable();
         }
 
         public void SaveChanges()
         {
-            _context.SaveChanges();
+            Context.SaveChanges();
         }
 
         protected virtual void Dispose(bool disposing)
         {
             if (!disposing) return;
-            if (_context == null) return;
-            _context.Dispose();
-            _context = null;
+            if (Context == null) return;
+            Context.Dispose();
+            Context = null;
         }
     }
 }
