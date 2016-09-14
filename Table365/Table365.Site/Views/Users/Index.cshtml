@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Table365.Core.Models.POCO.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoginTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProfilePhoto)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoginTime)
+        </td>
+        <td>
+            @{
+                if (item.ProfilePhoto != null)
+                {
+                    var base64 = Convert.ToBase64String(item.ProfilePhoto);
+                    var image = $"data:image;base64,{base64}";
+                    <img src="@image" class="user-profile-photo"/>
+                }
+
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

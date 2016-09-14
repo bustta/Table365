@@ -2,8 +2,11 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using AutoMapper;
 using Table365.Core.Models.Context;
+using Table365.Core.Models.POCO;
 using Table365.Core.Models.Repository.Interface;
+using Table365.Core.Models.ViewModel;
 
 namespace Table365.Core.Models.Repository
 {
@@ -13,6 +16,8 @@ namespace Table365.Core.Models.Repository
         public GenericRepository()
             : this(new Table365Context())
         {
+
+            Mapper.Initialize(cfg => cfg.CreateMap<UserViewModels, User>());
         }
 
         public GenericRepository(DbContext context)
