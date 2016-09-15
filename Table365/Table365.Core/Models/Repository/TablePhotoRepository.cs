@@ -11,7 +11,7 @@ namespace Table365.Core.Models.Repository
             throw new NotImplementedException();
         }
 
-        public void Create(TablePhoto tablePhoto)
+        public new void Create(TablePhoto tablePhoto)
         {
             if (tablePhoto == null)
             {

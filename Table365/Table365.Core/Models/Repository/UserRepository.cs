@@ -2,6 +2,7 @@
 using AutoMapper;
 using Table365.Core.Models.POCO;
 using Table365.Core.Models.Repository.Interface;
+using Table365.Core.Models.Service;
 using Table365.Core.Models.ViewModel;
 
 namespace Table365.Core.Models.Repository
@@ -24,6 +25,8 @@ namespace Table365.Core.Models.Repository
             {
                 throw new ArgumentNullException("userViewMdodel");
             }
+            
+            userViewMdodel.Password = new UserService().GetEncrytPassword(userViewMdodel.Password);
             var user = Mapper.Map<User>(userViewMdodel);
 
             if (userViewMdodel.ImageFile != null)

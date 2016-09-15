@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
 namespace Table365.Core.Models.Repository.Interface
 {
     public interface IRepository<TEntity> : IDisposable
-        where TEntity : class 
+        where TEntity : class
     {
         void Create(TEntity instance);
 
@@ -19,6 +18,5 @@ namespace Table365.Core.Models.Repository.Interface
         IQueryable<TEntity> GetAll();
 
         void SaveChanges();
-
     }
 }
