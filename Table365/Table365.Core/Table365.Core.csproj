@@ -69,6 +69,8 @@
     <Compile Include="Models\Repository\GenericRepository.cs" />
     <Compile Include="Models\Repository\Interface\IRepository.cs" />
     <Compile Include="Models\Repository\Interface\ITablePhotoRepository.cs" />
+    <Compile Include="Models\ViewModel\LoginRegisterCombineViewModels.cs" />
+    <Compile Include="Models\ViewModel\LoginViewModels.cs" />
     <Compile Include="Models\ViewModel\UserViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Repository\Interface\IUser.cs" />

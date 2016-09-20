@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Security.Principal;
+using System.Web;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
@@ -64,5 +67,7 @@ namespace Table365.Site
             //    ClientSecret = ""
             //});
         }
+
+        
     }
 }

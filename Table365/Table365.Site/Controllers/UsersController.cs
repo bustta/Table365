@@ -52,15 +52,12 @@ namespace Table365.Site.Controllers
             [Bind(Include = "Id,Account,Password,Name,Email,ImageFile")] UserViewModels userViewModels, 
             HttpPostedFileBase upload)
         {
-            if (ModelState.IsValid)
-            {
-                userViewModels.RegisterTime = DateTime.Now;
-                userViewModels.LoginTime = DateTime.Now;
-                _userRepo.Create(userViewModels);
-                return RedirectToAction("Index");
-            }
+            if (!ModelState.IsValid) return View(userViewModels);
 
-            return View(userViewModels);
+            userViewModels.RegisterTime = DateTime.Now;
+            userViewModels.LoginTime = DateTime.Now;
+            _userRepo.Create(userViewModels);
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Users/Edit/5

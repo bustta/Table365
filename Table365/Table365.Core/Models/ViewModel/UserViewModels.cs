@@ -27,6 +27,7 @@ namespace Table365.Core.Models.ViewModel
 
         [DisplayName("Password")]
         [Required]
+        [DataType(DataType.Password)]
         [StringLength(200)]
         [MinLength(6, ErrorMessage = "Min length 6")]
         [MaxLength(200, ErrorMessage = "Max length 200")]
@@ -41,6 +42,7 @@ namespace Table365.Core.Models.ViewModel
 
         [DisplayName("e-Mail")]
         [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
         [DisplayName("RegisterTime")]
@@ -50,7 +52,6 @@ namespace Table365.Core.Models.ViewModel
         public DateTime LoginTime { get; set; }
 
         [DisplayName("ImageFile")]
-        //public byte[] ProfilePhoto { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
 
         public ICollection<TablePhoto> TablePhotos { get; set; }
